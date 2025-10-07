@@ -9,4 +9,4 @@ cd /app/packages/database && pnpm db:init
 
 echo "Starting backend API in development mode..."
 cd /app
-exec pnpm --filter @{{name}}/backend-api dev
+exec pnpm --filter @mono-repo-starter/backend-api dev

@@ -57,6 +57,15 @@ sed -i '' 's/"name": "@mono-repo-starter\/backend-api"/"name": "@{{name}}\/backe
 # Substitute in web-client package.json
 sed -i '' 's/"name": "web-client"/"name": "{{name}}-web-client"/' "$TEMPLATE_DIR/apps/web-client/package.json"
 
+# Substitute in docker-entrypoint.dev.sh
+sed -i '' 's/@mono-repo-starter\/backend-api/@{{name}}\/backend-api/' "$TEMPLATE_DIR/apps/backend-api/docker-entrypoint.dev.sh"
+
+# Substitute in Dockerfile.prod
+sed -i '' 's/@mono-repo-starter\/backend-api/@{{name}}\/backend-api/g' "$TEMPLATE_DIR/apps/backend-api/Dockerfile.prod"
+
+# Substitute in README.md
+sed -i '' 's/mono-repo-starter/{{name}}/g' "$TEMPLATE_DIR/README.md"
+
 echo "✅ Template sync complete!"
 echo ""
 echo "Template location: $TEMPLATE_DIR"
