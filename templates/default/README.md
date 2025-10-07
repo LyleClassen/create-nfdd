@@ -52,7 +52,7 @@ A production-ready, full-stack TypeScript monorepo starter template designed for
 ## Project Structure
 
 ```
-mono-repo-starter/
+{{name}}/
 ├── apps/
 │   ├── backend-api/          # Fastify REST API
 │   │   ├── src/
@@ -103,7 +103,7 @@ mono-repo-starter/
 1. **Clone the repository**
    ```bash
    git clone <your-repo-url>
-   cd mono-repo-starter
+   cd {{name}}
    ```
 
 2. **Start development environment**
@@ -202,7 +202,7 @@ docker compose -f docker-compose.dev.yml up -d --build
 docker compose -f docker-compose.dev.yml logs -f
 
 # Specific service
-docker logs mono-repo-starter-backend-api-1 -f
+docker logs {{name}}-backend-api-1 -f
 ```
 
 ## Database Management
@@ -308,7 +308,7 @@ Migrations are handled automatically by the `init.ts` script that runs on contai
 
 ```bash
 # Inside container
-docker exec -it mono-repo-starter-backend-api-1 sh
+docker exec -it {{name}}-backend-api-1 sh
 cd /app/packages/database
 pnpm db:migrate
 
