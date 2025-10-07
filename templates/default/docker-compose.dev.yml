@@ -15,8 +15,6 @@ services:
       - .env.dev
     stdin_open: true
     tty: true
-    networks:
-      - app-network
 
   backend-api:
     build:
