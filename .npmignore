@@ -1,0 +1,10 @@
+src/
+tsconfig.json
+.gitignore
+node_modules/
+*.log
+.DS_Store
+templates/default/.git
+templates/default/node_modules
+templates/default/**/.next
+templates/default/**/dist

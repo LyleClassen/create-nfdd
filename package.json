@@ -1,0 +1,41 @@
+{
+  "name": "create-nfdd",
+  "version": "1.0.0",
+  "description": "Bootstrap NFDD (Next.js + Fastify + Drizzle + Docker) enterprise monorepo projects",
+  "main": "lib/cli.js",
+  "bin": {
+    "create-nfdd": "lib/cli.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "sync": "./sync-template.sh && npm run build",
+    "prepublishOnly": "npm run sync",
+    "test": "node lib/cli.js test-project --name=test-project --description='Test project' --author='Test' --license=MIT"
+  },
+  "keywords": [
+    "create",
+    "generator",
+    "nextjs",
+    "fastify",
+    "drizzle",
+    "docker",
+    "monorepo",
+    "typescript",
+    "enterprise",
+    "starter"
+  ],
+  "author": "",
+  "license": "MIT",
+  "packageManager": "pnpm@10.18.0",
+  "dependencies": {
+    "create-create-app": "^7.3.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.19.19",
+    "typescript": "^5.9.3"
+  },
+  "files": [
+    "lib",
+    "templates"
+  ]
+}

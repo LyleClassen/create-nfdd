@@ -1,0 +1,13 @@
+{
+  "name": "{{name}}",
+  "version": "1.0.0",
+  "description": "{{description}}",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "{{author}}{{#if email}} <{{email}}>{{/if}}",
+  "license": "{{license}}",
+  "packageManager": "pnpm@10.18.0"
+}
