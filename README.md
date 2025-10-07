@@ -183,9 +183,68 @@ The starter includes a fully functional CRUD example for managing "people" recor
 - **Database**: Auto-migrated schema with seed data
 - **Types**: End-to-end type safety
 
+## Maintenance & Updates
+
+### For Maintainers: Updating the Template
+
+This package uses a two-repository strategy:
+1. **mono-repo-starter** - The active development codebase
+2. **create-nfdd** - This package (syncs from mono-repo-starter)
+
+#### Update Workflow
+
+1. **Make changes in mono-repo-starter**:
+   ```bash
+   cd ../mono-repo-starter
+   # Make your changes, test them
+   docker compose -f docker-compose.dev.yml up -d
+   # Verify everything works
+   git commit -am "Add new feature"
+   ```
+
+2. **Sync changes to create-nfdd**:
+   ```bash
+   cd ../create-nfdd
+   pnpm sync
+   ```
+   This copies files and applies template variable substitutions.
+
+3. **Test the generator**:
+   ```bash
+   pnpm test
+   # Or manually:
+   node lib/cli.js test-project --name=test --author="Test"
+   ```
+
+4. **Publish to npm**:
+   ```bash
+   npm version patch  # or minor/major
+   npm publish
+   ```
+   The `prepublishOnly` hook automatically runs `pnpm sync` before publishing.
+
+#### What Gets Synced
+
+The `sync-template.sh` script:
+- Copies all files from `mono-repo-starter` (excluding `node_modules`, `.git`, etc.)
+- Substitutes Handlebars variables in:
+  - `package.json` → `{{name}}`, `{{description}}`, `{{author}}`, etc.
+  - `.env.dev` & `.env.prod` → `{{database}}`, `{{apiPort}}`, `{{webPort}}`
+  - Web client config → `{{apiPort}}`
+
+See [DEVELOPMENT.md](./DEVELOPMENT.md) for detailed maintainer documentation.
+
 ## Contributing
 
 Found a bug or have a suggestion? Open an issue on [GitHub](https://github.com/YOUR_USERNAME/create-nfdd).
+
+### For Contributors
+
+If you want to contribute improvements:
+1. Make changes in the `mono-repo-starter` repository
+2. Test thoroughly with Docker Compose
+3. Submit a PR to `mono-repo-starter`
+4. Maintainers will sync changes to `create-nfdd` when publishing
 
 ## License
 
