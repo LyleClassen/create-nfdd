@@ -33,7 +33,7 @@ A production-ready, full-stack TypeScript monorepo starter template designed for
 ### Backend
 - **Framework**: Fastify 5
 - **Validation**: TypeBox (JSON Schema)
-- **API Documentation**: Swagger/OpenAPI 3.0
+- **API Documentation**: Scalar with OpenAPI 3.0
 - **CORS**: @fastify/cors
 - **Logging**: Pino with pino-pretty (colorized, emoji-enhanced)
 
@@ -52,7 +52,7 @@ A production-ready, full-stack TypeScript monorepo starter template designed for
 ## Project Structure
 
 ```
-mono-repo-starter/
+{{name}}/
 ├── apps/
 │   ├── backend-api/          # Fastify REST API
 │   │   ├── src/
@@ -103,7 +103,7 @@ mono-repo-starter/
 1. **Clone the repository**
    ```bash
    git clone <your-repo-url>
-   cd mono-repo-starter
+   cd {{name}}
    ```
 
 2. **Start development environment**
@@ -202,7 +202,7 @@ docker compose -f docker-compose.dev.yml up -d --build
 docker compose -f docker-compose.dev.yml logs -f
 
 # Specific service
-docker logs mono-repo-starter-backend-api-1 -f
+docker logs {{name}}-backend-api-1 -f
 ```
 
 ## Database Management
@@ -308,7 +308,7 @@ Migrations are handled automatically by the `init.ts` script that runs on contai
 
 ```bash
 # Inside container
-docker exec -it mono-repo-starter-backend-api-1 sh
+docker exec -it {{name}}-backend-api-1 sh
 cd /app/packages/database
 pnpm db:migrate
 
@@ -507,21 +507,25 @@ NEXT_PUBLIC_API_URL=http://localhost:3001
 
 ## API Documentation
 
-### Swagger/OpenAPI Integration
+### OpenAPI with Scalar
 
-API documentation is auto-generated from route schemas and available at:
+API documentation is auto-generated from route schemas and served as a static Scalar site at:
 - Development: http://localhost:3001/docs
 - Production: https://your-api.com/docs
 
-### Generating OpenAPI Spec
+### Generating OpenAPI Spec and Documentation
 
 ```bash
 cd apps/backend-api
 DATABASE_URL=postgresql://postgres:postgres@localhost:5432/app_db pnpm generate:openapi
 ```
 
-This creates `apps/backend-api/openapi/openapi.json` which is used by:
-- Swagger UI for interactive documentation
+This generates:
+- `apps/backend-api/openapi/openapi.json` - OpenAPI specification
+- `apps/backend-api/openapi/index.html` - Scalar static documentation
+
+The OpenAPI spec is used by:
+- Scalar for interactive API documentation with "try it out" functionality
 - `openapi-typescript` to generate TypeScript types for frontend
 
 ### Documenting Routes
@@ -923,14 +927,16 @@ WEB_CLIENT_PORT=3000
 
 ### OpenAPI Documentation Requirements
 
-**Swagger UI**:
+**Scalar Documentation**:
 - MUST be available at `/docs` endpoint
 - MUST include all routes with descriptions
-- MUST show request/response schemas
+- MUST show request/response schemas with "try it out" functionality
 - MUST organize by tags
+- Static HTML generated from OpenAPI spec
 
 **OpenAPI Spec**:
 - Generated in `apps/backend-api/openapi/openapi.json`
+- Used by Scalar for interactive documentation
 - Used by frontend for type generation
 - Version: OpenAPI 3.0.0
 
@@ -1067,7 +1073,7 @@ Before finalizing a constitution, verify:
 - [Fastify Documentation](https://www.fastify.io/)
 - [Next.js Documentation](https://nextjs.org/docs)
 - [TypeBox Documentation](https://github.com/sinclairzx81/typebox)
-- [OpenAPI Specification](https://swagger.io/specification/)
+- [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
 - [pnpm Workspace](https://pnpm.io/workspaces)
 
 ## License

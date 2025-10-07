@@ -34,10 +34,10 @@ COPY packages/database ./packages/database
 RUN pnpm --filter @repo/database build
 
 # Build TypeScript
-RUN pnpm --filter @mono-repo-starter/backend-api build
+RUN pnpm --filter @{{name}}/backend-api build
 
 # Generate OpenAPI spec
-RUN pnpm --filter @mono-repo-starter/backend-api generate:openapi
+RUN pnpm --filter @{{name}}/backend-api generate:openapi
 
 # Stage 3: Production dependencies
 FROM base AS prod-dependencies
