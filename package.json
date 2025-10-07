@@ -1,6 +1,6 @@
 {
   "name": "create-nfdd",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Bootstrap NFDD (Next.js + Fastify + Drizzle + Docker) enterprise monorepo projects",
   "main": "lib/cli.js",
   "bin": {
